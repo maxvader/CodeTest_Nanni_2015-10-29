@@ -10,6 +10,7 @@ import it.tennis.TennisGame.interfaces.AbstractGame;
 import java.util.Random;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,9 @@ import org.slf4j.LoggerFactory;
  * @author mnanni
  *
  */
+@Named
 public class SimpleMatchSimulator {
-	private static Logger LOG = LoggerFactory
-			.getLogger(SimpleMatchSimulator.class);
+	private static Logger LOG = LoggerFactory.getLogger(SimpleMatchSimulator.class);
 
 	@Inject
 	AbstractFactory abstractFactory;
