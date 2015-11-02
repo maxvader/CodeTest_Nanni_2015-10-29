@@ -3,12 +3,14 @@
  */
 package it.tennis.TennisGame.simpleImpl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import it.tennis.TennisGame.Constants.PlayerScore;
 import it.tennis.TennisGame.GameScore;
 import it.tennis.TennisGame.exception.GameAlreadyOverException;
 import it.tennis.TennisGame.interfaces.AbstractGame;
+import it.tennis.TennisGame.rules.RulesEngine;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author mnanni
@@ -16,6 +18,11 @@ import it.tennis.TennisGame.interfaces.AbstractGame;
  */
 public class ConsoleLoggingGame implements AbstractGame {
 	private static Logger LOG = LoggerFactory.getLogger(ConsoleLoggingGame.class);
+	
+	private boolean gameRunning=Boolean.TRUE;
+	private RulesEngine re = new RulesEngine();
+	private GameScore gameScore = re.initScore();
+	
 	
 	public ConsoleLoggingGame() {
 		LOG.debug("creating ConsoleLoggingGame instance");
@@ -43,8 +50,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	 */
 	@Override
 	public boolean isGameRunning() {
-		// TODO Auto-generated method stub
-		return false;
+		return gameRunning;
 	}
 
 	/* (non-Javadoc)
@@ -52,8 +58,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	 */
 	@Override
 	public GameScore getScore() {
-		// TODO Auto-generated method stub
-		return null;
+		return gameScore;
 	}
 
 }

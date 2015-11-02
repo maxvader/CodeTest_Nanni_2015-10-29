@@ -1,5 +1,6 @@
 package it.tennis.TennisGame;
 
+import it.tennis.TennisGame.Constants.PlayerScore;
 import it.tennis.TennisGame.interfaces.AbstractGame;
 import it.tennis.TennisGame.simpleImpl.SimpleFactory;
 
@@ -15,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/test-context.xml" })
-public class FactoryTestTest {
+public class GameTest {
 	@Inject
 	SimpleFactory simpleFactory;
 
@@ -31,6 +32,15 @@ public class FactoryTestTest {
 	public void testNewGameNotOver() {
 		AbstractGame ag = simpleFactory.createGame();
 		Assert.assertTrue(ag.isGameRunning());
+	}
+	
+	@Test
+	public void testInitialScore(){
+		AbstractGame ag = simpleFactory.createGame();
+		GameScore score = ag.getScore();
+		Assert.assertTrue(
+				PlayerScore.LOVE.equals(score.getScoreA()) && 
+				PlayerScore.LOVE.equals(score.getScoreB()));
 	}
 
 }
