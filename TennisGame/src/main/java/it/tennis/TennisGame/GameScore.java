@@ -37,5 +37,10 @@ public class GameScore {
 	public void setScoreB(PlayerScore scoreB) {
 		this.scoreB = scoreB;
 	}
+	
+	@Override
+	public String toString() {
+		return "Player A score: " + this.scoreA.toString() + " Player B score: " + this.scoreB.toString();
+	}
 
 }
