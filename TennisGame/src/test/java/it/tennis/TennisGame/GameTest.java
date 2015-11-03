@@ -1,6 +1,7 @@
 package it.tennis.TennisGame;
 
 import it.tennis.TennisGame.Constants.PlayerScore;
+import it.tennis.TennisGame.exception.GameAlreadyOverException;
 import it.tennis.TennisGame.interfaces.AbstractGame;
 import it.tennis.TennisGame.simpleImpl.SimpleFactory;
 
@@ -41,6 +42,14 @@ public class GameTest {
 		Assert.assertTrue(
 				PlayerScore.LOVE.equals(score.getScoreA()) && 
 				PlayerScore.LOVE.equals(score.getScoreB()));
+	}
+	
+	@Test(expected=GameAlreadyOverException.class)
+	public void testMoreThanAllowedPoints() throws GameAlreadyOverException{
+		AbstractGame ag = simpleFactory.createGame();
+		for(int i=0; i <= 5; i++){
+			ag.assignPointPlayerA();
+		}
 	}
 
 }
