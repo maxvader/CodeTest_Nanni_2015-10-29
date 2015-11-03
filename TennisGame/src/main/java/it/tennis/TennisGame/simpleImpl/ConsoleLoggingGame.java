@@ -7,6 +7,7 @@ import it.tennis.TennisGame.exception.GameAlreadyOverException;
 import it.tennis.TennisGame.interfaces.AbstractGame;
 import it.tennis.TennisGame.models.GameScore;
 import it.tennis.TennisGame.rules.RulesEngine;
+import it.tennis.TennisGame.rules.RulesEngineInterface;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +20,14 @@ public class ConsoleLoggingGame implements AbstractGame {
 	private static Logger LOG = LoggerFactory.getLogger(ConsoleLoggingGame.class);
 	
 	private boolean gameRunning=Boolean.TRUE;
-	//can potentially inject custom rules engine but will skip this time.
-	private RulesEngine re = new RulesEngine();
-	private GameScore gameScore = re.initScore();
+	private RulesEngineInterface rulesEngine;
+	private GameScore gameScore;
 	
 	
-	public ConsoleLoggingGame() {
+	public ConsoleLoggingGame(RulesEngineInterface rulesEngine) {
 		LOG.debug("creating ConsoleLoggingGame instance");
+		this.rulesEngine = rulesEngine;
+		this.gameScore = this.rulesEngine.initScore();
 	}
 	/* (non-Javadoc)
 	 * @see it.tennis.TennisGame.interfaces.AbstractGame#assignPointPlayerA()
@@ -33,7 +35,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	@Override
 	public AbstractGame assignPointPlayerA() throws GameAlreadyOverException {
 		if(!this.isGameRunning()) throw new GameAlreadyOverException("game already over");
-		gameRunning = re.assignPointA(gameScore);
+		gameRunning = rulesEngine.assignPointA(gameScore);
 		LOG.debug(this.getScore().toString());
 		return this;
 	}
@@ -44,7 +46,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	@Override
 	public AbstractGame assignPointPlayerB() throws GameAlreadyOverException {
 		if(!this.isGameRunning()) throw new GameAlreadyOverException("game already over");
-		gameRunning = re.assignPointB(gameScore);
+		gameRunning = rulesEngine.assignPointB(gameScore);
 		LOG.debug(this.getScore().toString());
 		return this;
 	}

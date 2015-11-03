@@ -1,24 +1,28 @@
 package it.tennis.TennisGame.rules;
 
 import it.tennis.TennisGame.models.GameScore;
+
+import javax.inject.Named;
 /**
- * Rules engine, it could and should have been a interface implementation,
- * injected in the game BY the factory!!!
- *  not done for lack of time
+ * Rules engine
  * @author mnanni
  *
  */
-public class RulesEngine {
+@Named
+public class RulesEngine implements RulesEngineInterface {
 
+	/* (non-Javadoc)
+	 * @see it.tennis.TennisGame.rules.RulesEngineInterface#initScore()
+	 */
+	@Override
 	public GameScore initScore() {
 		return new GameScore(GameScore.PlayerScore.LOVE, GameScore.PlayerScore.LOVE);
 	}
 
-	/**
-	 * Updates values in the GameScore parameters and returns "is game running"
-	 * @param gameScore
-	 * @return
+	/* (non-Javadoc)
+	 * @see it.tennis.TennisGame.rules.RulesEngineInterface#assignPointA(it.tennis.TennisGame.models.GameScore)
 	 */
+	@Override
 	public boolean assignPointA(GameScore gameScore) {
 		return assignPointToFirst(gameScore);
 	}
@@ -46,12 +50,10 @@ public class RulesEngine {
 		return true;
 	}
 
-	/**
-	 * Updates values in the GameScore parameters and returns "is game running".
-	 * Uses a dirty hack because of poor design of GameScore
-	 * @param gameScore
-	 * @return
+	/* (non-Javadoc)
+	 * @see it.tennis.TennisGame.rules.RulesEngineInterface#assignPointB(it.tennis.TennisGame.models.GameScore)
 	 */
+	@Override
 	public boolean assignPointB(GameScore gameScore) {
 		GameScore swapCopy = swapScore(new GameScore(gameScore));
 		boolean tmp = assignPointToFirst(swapCopy);
