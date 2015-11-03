@@ -1,7 +1,7 @@
 package it.tennis.TennisGame;
 
+import it.tennis.TennisGame.interfaces.AbstractFactory;
 import it.tennis.TennisGame.interfaces.AbstractGame;
-import it.tennis.TennisGame.simpleImpl.SimpleFactory;
 
 import javax.inject.Inject;
 
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class FactoryTest {
 
 	@Inject
-	SimpleFactory simpleFactory;
+	AbstractFactory simpleFactory;
 	
 	@Before
 	public void setUp() throws Exception {

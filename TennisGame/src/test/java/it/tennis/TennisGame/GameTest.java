@@ -1,10 +1,9 @@
 package it.tennis.TennisGame;
 
 import it.tennis.TennisGame.exception.GameAlreadyOverException;
+import it.tennis.TennisGame.interfaces.AbstractFactory;
 import it.tennis.TennisGame.interfaces.AbstractGame;
 import it.tennis.TennisGame.models.GameScore;
-import it.tennis.TennisGame.models.GameScore.PlayerScore;
-import it.tennis.TennisGame.simpleImpl.SimpleFactory;
 
 import javax.inject.Inject;
 
@@ -20,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "/test-context.xml" })
 public class GameTest {
 	@Inject
-	SimpleFactory simpleFactory;
+	AbstractFactory simpleFactory;
 
 	@Before
 	public void setUp() throws Exception {
