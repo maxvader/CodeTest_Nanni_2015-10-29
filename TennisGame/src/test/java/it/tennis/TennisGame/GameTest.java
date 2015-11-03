@@ -51,5 +51,15 @@ public class GameTest {
 			ag.assignPointPlayerA();
 		}
 	}
+	
+	@Test
+	public void testDeuce() throws GameAlreadyOverException{
+		AbstractGame ag = simpleFactory.createGame();
+		GameScore score = ag.assignPointPlayerA().assignPointPlayerA().assignPointPlayerA()
+				.assignPointPlayerB().assignPointPlayerB().getScore();
+		Assert.assertTrue(
+				PlayerScore.DEUCE.equals(score.getScoreA()) && 
+				PlayerScore.DEUCE.equals(score.getScoreB()));
+	}
 
 }
