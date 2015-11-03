@@ -8,5 +8,15 @@ public class RulesEngine {
 	public GameScore initScore() {
 		return new GameScore(PlayerScore.LOVE, PlayerScore.LOVE);
 	}
+
+	public boolean assignPointA(GameScore gameScore) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean assignPointB(GameScore gameScore) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

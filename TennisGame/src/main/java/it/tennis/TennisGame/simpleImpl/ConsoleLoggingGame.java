@@ -3,7 +3,6 @@
  */
 package it.tennis.TennisGame.simpleImpl;
 
-import it.tennis.TennisGame.Constants.PlayerScore;
 import it.tennis.TennisGame.GameScore;
 import it.tennis.TennisGame.exception.GameAlreadyOverException;
 import it.tennis.TennisGame.interfaces.AbstractGame;
@@ -20,6 +19,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	private static Logger LOG = LoggerFactory.getLogger(ConsoleLoggingGame.class);
 	
 	private boolean gameRunning=Boolean.TRUE;
+	//can potentially inject custom rules engine but will skip this time.
 	private RulesEngine re = new RulesEngine();
 	private GameScore gameScore = re.initScore();
 	
@@ -32,8 +32,9 @@ public class ConsoleLoggingGame implements AbstractGame {
 	 */
 	@Override
 	public AbstractGame assignPointPlayerA() throws GameAlreadyOverException {
-		// TODO Auto-generated method stub
-		return null;
+		gameRunning = re.assignPointA(gameScore);
+		LOG.debug(this.getScore().toString());
+		return this;
 	}
 
 	/* (non-Javadoc)
@@ -41,8 +42,9 @@ public class ConsoleLoggingGame implements AbstractGame {
 	 */
 	@Override
 	public AbstractGame assignPointPlayerB() throws GameAlreadyOverException {
-		// TODO Auto-generated method stub
-		return null;
+		gameRunning = re.assignPointB(gameScore);
+		LOG.debug(this.getScore().toString());
+		return this;
 	}
 
 	/* (non-Javadoc)
