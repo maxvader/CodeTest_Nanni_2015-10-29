@@ -61,5 +61,34 @@ public class GameTest {
 				PlayerScore.DEUCE.equals(score.getScoreA()) && 
 				PlayerScore.DEUCE.equals(score.getScoreB()));
 	}
+	
+	/**
+	 * Case for b should be coded
+	 * @throws GameAlreadyOverException
+	 */
+	@Test
+	public void testAdvantageA() throws GameAlreadyOverException{
+		AbstractGame ag = simpleFactory.createGame();
+		GameScore score = ag.assignPointPlayerA().assignPointPlayerA().assignPointPlayerA()
+				.assignPointPlayerB().assignPointPlayerB().assignPointPlayerA().getScore();
+		Assert.assertTrue(
+				PlayerScore.ADVANTAGE.equals(score.getScoreA()) && 
+				PlayerScore.FORTY.equals(score.getScoreB()));
+	}
+	
+	/**
+	 * Case for b shuld be coded
+	 * @throws GameAlreadyOverException
+	 */
+	@Test
+	public void testWinA() throws GameAlreadyOverException{
+		AbstractGame ag = simpleFactory.createGame();
+		GameScore score = ag.assignPointPlayerA().assignPointPlayerA().assignPointPlayerA()
+				.assignPointPlayerB().assignPointPlayerB().assignPointPlayerA()
+				.assignPointPlayerA().getScore();
+		Assert.assertTrue(
+				PlayerScore.WON.equals(score.getScoreA()) && 
+				PlayerScore.FORTY.equals(score.getScoreB()));
+	}
 
 }
