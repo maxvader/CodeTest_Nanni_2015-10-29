@@ -1,7 +1,7 @@
 package it.tennis.TennisGame.interfaces;
 
-import it.tennis.TennisGame.GameScore;
 import it.tennis.TennisGame.exception.GameAlreadyOverException;
+import it.tennis.TennisGame.models.GameScore;
 
 /**
  * 

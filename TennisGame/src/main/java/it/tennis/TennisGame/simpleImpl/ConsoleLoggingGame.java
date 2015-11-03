@@ -3,9 +3,9 @@
  */
 package it.tennis.TennisGame.simpleImpl;
 
-import it.tennis.TennisGame.GameScore;
 import it.tennis.TennisGame.exception.GameAlreadyOverException;
 import it.tennis.TennisGame.interfaces.AbstractGame;
+import it.tennis.TennisGame.models.GameScore;
 import it.tennis.TennisGame.rules.RulesEngine;
 
 import org.slf4j.Logger;
@@ -32,6 +32,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	 */
 	@Override
 	public AbstractGame assignPointPlayerA() throws GameAlreadyOverException {
+		if(!this.isGameRunning()) throw new GameAlreadyOverException("game already over");
 		gameRunning = re.assignPointA(gameScore);
 		LOG.debug(this.getScore().toString());
 		return this;
@@ -42,6 +43,7 @@ public class ConsoleLoggingGame implements AbstractGame {
 	 */
 	@Override
 	public AbstractGame assignPointPlayerB() throws GameAlreadyOverException {
+		if(!this.isGameRunning()) throw new GameAlreadyOverException("game already over");
 		gameRunning = re.assignPointB(gameScore);
 		LOG.debug(this.getScore().toString());
 		return this;
